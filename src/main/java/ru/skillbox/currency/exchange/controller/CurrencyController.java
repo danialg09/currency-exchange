@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillbox.currency.exchange.dto.CurrencyDto;
+import ru.skillbox.currency.exchange.dto.ListCurrencyDto;
 import ru.skillbox.currency.exchange.service.CurrencyService;
 
 @RestController
@@ -11,6 +12,11 @@ import ru.skillbox.currency.exchange.service.CurrencyService;
 @RequestMapping("api/currency")
 public class CurrencyController {
     private final CurrencyService service;
+
+    @GetMapping
+    public ResponseEntity<ListCurrencyDto> getAll() {
+        return ResponseEntity.ok(service.getCurrencies());
+    }
 
     @GetMapping(value = "/{id}")
     ResponseEntity<CurrencyDto> getById(@PathVariable("id") Long id) {
