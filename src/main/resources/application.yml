@@ -21,3 +21,5 @@ spring:
         hbm2ddl:
           auto: none
 
+app:
+  bank-url: https://cbr.ru/scripts/XML_daily.asp
