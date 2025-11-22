@@ -5,7 +5,16 @@
         xsi:schemaLocation=" http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
-    <changeSet author="skillbox" id="insert_currency">
+    <changeSet id="insert_ruble_base_currency" author="skillbox">
+        <comment>Вставка базовой валюты (RUB) для обеспечения корректной конвертации.</comment>
+        <insert tableName="currency">
+            <column name="id" valueNumeric="99999"/>
+            <column name="name" value="Российский рубль"/>
+            <column name="nominal" valueNumeric="1"/>
+            <column name="value" valueNumeric="1.0"/>
+            <column name="iso_num_code" valueNumeric="643"/>
+            <column name="iso_char_code" value="RUB"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
