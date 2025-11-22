@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Название сервиса, которое будет использоваться в сети Docker
+  postgres:
+    image: postgres:14-alpine # Используем стабильный и легкий образ
+    container_name: postgres_db_currency
+
+    # Переменные окружения для настройки пользователя и базы данных
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres # Имя базы данных
+
+    # Сопоставление портов: Хост:Контейнер. Соответствует jdbc:postgresql://localhost:5432
+    ports:
+      - "5432:5432"
+
+    # Сохранение данных на хост-машине (чтобы данные не пропали после перезапуска)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    # Перезапускать, если контейнер упал
+    restart: always
+
+# Определяем том для сохранения данных
+volumes:
+  postgres_data:
